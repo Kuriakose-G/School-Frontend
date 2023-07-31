@@ -1,0 +1,17 @@
+.text-overlay{
+        position: absolute;
+        top: 90%;
+        left: 37%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8); /* Background color with transparency */
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+        color: #000; /* Text color */
+}
+
+button:hover{
+    box-shadow: 10px 10px 10px;
+    border-color: darkblue;
+    color: darkblue;
+}

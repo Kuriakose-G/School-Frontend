@@ -1,0 +1,148 @@
+  <!-- navBar -->
+  <div id="nav">
+    <img src="https://th.bing.com/th/id/R.74b2fdd2107b648fbfe8ca3a00e67f32?rik=h8b78dzxpZfKXA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f04%2fLos_Angeles_Dodgers_logo_blue.png&ehk=bPA1QxmlSvoMeZ4oj6hq7qdQ%2bDBSasQP%2b4Bjixr9qWM%3d&risl=&pid=ImgRaw&r=0" alt="Lumina Academy Logo">
+    <h1 class="text-center" style="font-size: 28px;">LUMINA ACADEMY</h1>
+  </div>
+
+<!-- Main-Content -->
+<div class="container" *ngIf="studentDetails && studentDetails.additionalDetails && studentMarks">
+  <div class="row">
+    <div class="col mt-5">
+      <!-- Student Details -->
+      <table class="table table-bordered table-symmetric table-rounded">
+        <thead>
+          <tr>
+            <th colspan="6" class="text-center">Student Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="symmetric-header">Student Name:</th>
+            <td>{{ student?.studentName }}</td>
+            <th class="symmetric-header">ID:</th>
+            <td>{{ student?.studentId }}</td>
+            <th class="symmetric-header">DOB:</th>
+            <td>{{ studentDetails.additionalDetails[0].dob }}</td>
+          </tr>
+          <tr>
+            <th class="symmetric-header">Email:</th>
+            <td colspan="2">{{ studentDetails.additionalDetails[0].email }}</td>
+            <th class="symmetric-header">Gender:</th>
+            <td colspan="2">{{ studentDetails.additionalDetails[0].gender }}</td>
+          </tr>
+          <tr>
+            <th class="symmetric-header">Guardian Name:</th>
+            <td colspan="2">{{ studentDetails.additionalDetails[0].gname }}</td>
+            <th class="symmetric-header">Guardian Contact:</th>
+            <td colspan="2">{{ studentDetails.additionalDetails[0].gcontact }}</td>
+          </tr>
+          <tr>
+            <th class="symmetric-header">Contact Number:</th>
+            <td colspan="5">{{ studentDetails.additionalDetails[0].contact }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-5">
+      <table class="table table-bordered table-symmetric table-rounded">
+        <thead>
+          <tr>
+            <th colspan="5" class="text-center">Semester 1 <i class="fa-solid fa-pen-to-square" [routerLink]="'/enterMarks/' + student.id" style="float: right; cursor: pointer;"></i></th>
+          </tr>
+          <tr>
+            <th>Subject</th>
+            <th>Internal 1</th>
+            <th>Internal 2</th>
+            <th>Assignment 1</th>
+            <th>Assignment 2</th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+                <th>Maths</th>
+                <td>{{ mathsSem1[0]?.internal1 }}</td>
+                <td>{{ mathsSem1[0]?.internal2 }}</td>
+                <td>{{ mathsSem1[1]?.assignment1 }}</td>
+                <td>{{ mathsSem1[1]?.assignment2 }}</td>
+              </tr>
+              <tr>
+                <th>Science</th>
+                <td>{{ scienceSem1[0]?.internal1 }}</td>
+                <td>{{ scienceSem1[0]?.internal2 }}</td>
+                <td>{{ scienceSem1[1]?.assignment1 }}</td>
+                <td>{{ scienceSem1[1]?.assignment2 }}</td>
+              </tr>
+              <tr>
+                <th>English</th>
+                <td>{{ englishSem1[0]?.internal1 }}</td>
+                <td>{{ englishSem1[0]?.internal2 }}</td>
+                <td>{{ englishSem1[1]?.assignment1 }}</td>
+                <td>{{ englishSem1[1]?.assignment2 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mt-5">
+          <table class="table table-bordered table-symmetric table-rounded">
+            <thead>
+              <tr>
+                <th colspan="5" class="text-center">Semester 2 <i class="fa-solid fa-pen-to-square" [routerLink]="'/enterMarks/' + student.id" style="float: right; cursor: pointer;"></i></th>
+              </tr>
+              <tr>
+                <th>Subject</th>
+                <th>Internal 1</th>
+                <th>Internal 2</th>
+                <th>Assignment 1</th>
+                <th>Assignment 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Maths</th>
+                <td>{{ mathsSem2[0]?.internal1 }}</td>
+                <td>{{ mathsSem2[0]?.internal2 }}</td>
+                <td>{{ mathsSem2[1]?.assignment1 }}</td>
+                <td>{{ mathsSem2[1]?.assignment2 }}</td>
+              </tr>
+              <!-- Science -->
+              <tr>
+                <th>Science</th>
+                <td>{{ scienceSem2[0]?.internal1 }}</td>
+                <td>{{ scienceSem2[0]?.internal2 }}</td>
+                <td>{{ scienceSem2[1]?.assignment1 }}</td>
+                <td>{{ scienceSem2[1]?.assignment2 }}</td>
+              </tr>
+              <!-- English -->
+              <tr>
+                <th>English</th>
+                <td>{{ englishSem2[0]?.internal1 }}</td>
+                <td>{{ englishSem2[0]?.internal2 }}</td>
+                <td>{{ englishSem2[1]?.assignment1 }}</td>
+                <td>{{ englishSem2[1]?.assignment2 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
+
+<div class="container" *ngIf="!hasError; else errorSection">
+  <!-- ... (existing code) -->
+</div>
+<ng-template #errorSection>
+  <!-- Display error message if there's an issue -->
+  <div class="alert alert-warning mt-3">
+    {{ errorMessage }}
+  </div>
+</ng-template>
+
+<footer class="text-center text-lg-start text-white">
+  <!-- Grid container -->
+  <div class="p-3">
+    © 2023 Kuriak_k | LUMINA ACADEMY
+  </div>
+</footer>

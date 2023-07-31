@@ -1,0 +1,48 @@
+  <!-- navBar -->
+  <div id="nav">
+    <img src="https://th.bing.com/th/id/R.74b2fdd2107b648fbfe8ca3a00e67f32?rik=h8b78dzxpZfKXA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f04%2fLos_Angeles_Dodgers_logo_blue.png&ehk=bPA1QxmlSvoMeZ4oj6hq7qdQ%2bDBSasQP%2b4Bjixr9qWM%3d&risl=&pid=ImgRaw&r=0" alt="Lumina Academy Logo">
+    <h1 class="text-center" style="font-size: 28px;">LUMINA ACADEMY</h1>
+  </div>
+
+  <!-- mainContent -->
+  <div id="main">
+    <div class="login-container">
+      <h2 class="text-center mb-5">Student Register</h2>
+      <div>
+        <form [formGroup]="registerForm" (ngSubmit)="studentRegister()" class="mt-5 p-5 border rounded shadow">
+          <div class="form-floating mb-3">
+            <input name="name" formControlName="name" type="text" class="form-control" id="floatingName" placeholder="Name">
+            <label for="floatingName">Name of Student</label>
+            <div *ngIf="this.registerForm.get('name')?.errors && this.registerForm.get('name')?.touched" class="text-danger">Invalid Data</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="studentId" formControlName="studentId" type="text" class="form-control" id="floatingStudentId" placeholder="Id">
+            <label for="floatingStudentId">Student ID</label>
+            <p class="text-warning">*Provided by the class teacher</p>
+            <div *ngIf="this.registerForm.get('studentId')?.errors && this.registerForm.get('studentId')?.touched" class="text-danger">Invalid Data</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="username" formControlName="username" type="text" class="form-control" id="floatingUsername" placeholder="UserName">
+            <label for="floatingUsername">Username</label>
+            <div *ngIf="this.registerForm.get('username')?.errors && this.registerForm.get('username')?.touched" class="text-danger">Invalid Data</div>
+          </div>
+          <div class="form-floating mb-3">
+            <input name="password" formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+            <div *ngIf="this.registerForm.get('password')?.errors && this.registerForm.get('password')?.touched" class="text-danger">Invalid Data</div>
+          </div>
+          <div class="text-danger text-center">{{regErrorMsg}}</div>
+          <button id="register" class="mt-4 mb-4 form-control" type="submit">Register</button>
+          <a routerLink="/student-login" style="text-decoration: none; float: right;">Already registered? Click here.</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="text-center text-lg-start text-white">
+    <!-- Grid container -->
+    <div class="p-3">
+      © 2023 Kuriak_k | LUMINA ACADEMY
+    </div>
+  </footer>

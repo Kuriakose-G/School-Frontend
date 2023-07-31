@@ -1,0 +1,291 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+@Component({
+  selector: 'app-student-dashboard',
+  templateUrl: './student-dashboard.component.html',
+  styleUrls: ['./student-dashboard.component.css']
+})
+export class StudentDashboardComponent implements OnInit{
+
+
+  studentUsername: string = '';
+  studentDetails: any = {};
+  studentMarks:any=[];
+  mathsSem1: any[] = [];
+  mathsSem2: any[] = [];
+  scienceSem1: any[] = [];
+  scienceSem2: any[] = [];
+  englishSem1: any[] = [];
+  englishSem2: any[] = [];
+
+  constructor(private fb: FormBuilder, private api:ApiService, private DashboardRouter:Router) {}
+
+  ngOnInit(): void {
+    if (localStorage.getItem('currentStudent')) {
+      this.studentUsername = localStorage.getItem('currentStudent') || '';
+    }
+
+    this.api.getDetails(this.studentUsername).subscribe(
+      (result: any) => {
+        this.studentDetails = result.details; // Store the student details
+        this.studentMarks=result.details.marks;
+        console.log('dashboard',this.studentDetails,this.studentMarks); 
+        this.arrangeMarks();       
+      },
+      (error: any) => {
+        console.log(error);
+      });
+  }
+
+  arrangeMarks() {
+    // Reset the arrays
+    this.mathsSem1 = [];
+    this.mathsSem2 = [];
+    this.scienceSem1 = [];
+    this.scienceSem2 = [];
+    this.englishSem1 = [];
+    this.englishSem2 = [];
+  
+    // Loop through the student marks and arrange them into the respective arrays
+    this.studentMarks.forEach((mark: any) => {
+      if (mark.subject === 'maths') {
+        if (mark.semester === '1') {
+          if (mark.type === 'internal') {
+            if (!this.mathsSem1[0]) this.mathsSem1[0] = { internal1: mark.mark };
+            else this.mathsSem1[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.mathsSem1[1]) this.mathsSem1[1] = { assignment1: mark.mark };
+            else this.mathsSem1[1].assignment2 = mark.mark;
+          }
+        } else if (mark.semester === '2') {
+          if (mark.type === 'internal') {
+            if (!this.mathsSem2[0]) this.mathsSem2[0] = { internal1: mark.mark };
+            else this.mathsSem2[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.mathsSem2[1]) this.mathsSem2[1] = { assignment1: mark.mark };
+            else this.mathsSem2[1].assignment2 = mark.mark;
+          }
+        }
+      } else if (mark.subject === 'science') {
+        if (mark.semester === '1') {
+          if (mark.type === 'internal') {
+            if (!this.scienceSem1[0]) this.scienceSem1[0] = { internal1: mark.mark };
+            else this.scienceSem1[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.scienceSem1[1]) this.scienceSem1[1] = { assignment1: mark.mark };
+            else this.scienceSem1[1].assignment2 = mark.mark;
+          }
+        } else if (mark.semester === '2') {
+          if (mark.type === 'internal') {
+            if (!this.scienceSem2[0]) this.scienceSem2[0] = { internal1: mark.mark };
+            else this.scienceSem2[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.scienceSem2[1]) this.scienceSem2[1] = { assignment1: mark.mark };
+            else this.scienceSem2[1].assignment2 = mark.mark;
+          }
+        }
+      } else if (mark.subject === 'english') {
+        if (mark.semester === '1') {
+          if (mark.type === 'internal') {
+            if (!this.englishSem1[0]) this.englishSem1[0] = { internal1: mark.mark };
+            else this.englishSem1[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.englishSem1[1]) this.englishSem1[1] = { assignment1: mark.mark };
+            else this.englishSem1[1].assignment2 = mark.mark;
+          }
+        } else if (mark.semester === '2') {
+          if (mark.type === 'internal') {
+            if (!this.englishSem2[0]) this.englishSem2[0] = { internal1: mark.mark };
+            else this.englishSem2[0].internal2 = mark.mark;
+          } else if (mark.type === 'assignment') {
+            if (!this.englishSem2[1]) this.englishSem2[1] = { assignment1: mark.mark };
+            else this.englishSem2[1].assignment2 = mark.mark;
+          }
+        }
+      }
+    });
+  
+    console.log('Final marks:', this.mathsSem1, this.mathsSem2, this.englishSem1, this.englishSem2, this.scienceSem1, this.scienceSem2);
+  }
+
+  logout(){
+    localStorage.clear()
+    this.DashboardRouter.navigateByUrl('')
+  }
+
+  generatePdf() {
+    const doc = new jsPDF();
+  
+    // Header and Footer content (optional)
+    const header = 'Semester 1 Results';
+    const footer = 'Generated by Lumina Academy';
+  
+    // Student Info
+    const studentName = `Student Name: ${this.studentDetails?.name || ''}`;
+    const studentId = `ID: ${this.studentDetails?.studentId || ''}`;
+  
+    // Data for the table
+    const data = [];
+    data.push(['Subject', 'Internal 1', 'Internal 2', 'Assignment 1', 'Assignment 2']);
+  
+    // Add data for Maths
+    data.push([
+      'Maths',
+      this.mathsSem1[0]?.internal1 || '',
+      this.mathsSem1[0]?.internal2 || '',
+      this.mathsSem1[1]?.assignment1 || '',
+      this.mathsSem1[1]?.assignment2 || '',
+    ]);
+  
+    // Add data for Science
+    data.push([
+      'Science',
+      this.scienceSem1[0]?.internal1 || '',
+      this.scienceSem1[0]?.internal2 || '',
+      this.scienceSem1[1]?.assignment1 || '',
+      this.scienceSem1[1]?.assignment2 || '',
+    ]);
+  
+    // Add data for English
+    data.push([
+      'English',
+      this.englishSem1[0]?.internal1 || '',
+      this.englishSem1[0]?.internal2 || '',
+      this.englishSem1[1]?.assignment1 || '',
+      this.englishSem1[1]?.assignment2 || '',
+    ]);
+  
+    // Set the table position and style
+    const tableConfig = {
+      headStyles: { fillColor: [88, 88, 189], textColor: [255] },
+      margin: { top: 40, left: 10, right: 10, bottom: 10 },
+    };
+  
+    // Add table to the PDF document using jspdf-autotable
+    const tableHeader = [data[0]]; // Header row
+    const tableBody = data.slice(1); // Data rows
+  
+    // Calculate the centered position for the header
+    const textWidth = doc.getTextWidth(header);
+    const pageWidth = doc.internal.pageSize.width;
+    const headerPosition = (pageWidth - textWidth) / 2;
+  
+    (doc as any).autoTable({
+      head: tableHeader,
+      body: tableBody,
+      startY: 50, // Start position from top (adjust as needed)
+      theme: 'grid',
+      ...tableConfig,
+    });
+  
+    // Add header, student info, and footer
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+  
+    // Center the header text
+    doc.text(header, headerPosition, 10, { align: 'left' });
+  
+    // Add student info at the top left corner
+    doc.text(studentName, 10, 20);
+    doc.text(studentId, 10, 30);
+  
+    doc.setFontSize(10);
+    doc.text(footer, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, {
+      align: 'center',
+    });
+  
+    // Save the PDF
+    doc.save('semester1_results.pdf');
+  }
+
+  generatePdfsem2() {
+    const doc = new jsPDF();
+  
+    // Header and Footer content (optional)
+    const header = 'Semester 2 Results';
+    const footer = 'Generated by Lumina Academy';
+  
+    // Student Info
+    const studentName = `Student Name: ${this.studentDetails?.name || ''}`;
+    const studentId = `ID: ${this.studentDetails?.studentId || ''}`;
+  
+    // Data for the table
+    const data = [];
+    data.push(['Subject', 'Internal 1', 'Internal 2', 'Assignment 1', 'Assignment 2']);
+  
+    // Add data for Maths
+    data.push([
+      'Maths',
+      this.mathsSem2[0]?.internal1 || '',
+      this.mathsSem2[0]?.internal2 || '',
+      this.mathsSem2[1]?.assignment1 || '',
+      this.mathsSem2[1]?.assignment2 || '',
+    ]);
+  
+    // Add data for Science
+    data.push([
+      'Science',
+      this.scienceSem2[0]?.internal1 || '',
+      this.scienceSem2[0]?.internal2 || '',
+      this.scienceSem2[1]?.assignment1 || '',
+      this.scienceSem2[1]?.assignment2 || '',
+    ]);
+  
+    // Add data for English
+    data.push([
+      'English',
+      this.englishSem2[0]?.internal1 || '',
+      this.englishSem2[0]?.internal2 || '',
+      this.englishSem2[1]?.assignment1 || '',
+      this.englishSem2[1]?.assignment2 || '',
+    ]);
+  
+    // Set the table position and style
+    const tableConfig = {
+      headStyles: { fillColor: [88, 88, 189], textColor: [255] },
+      margin: { top: 40, left: 10, right: 10, bottom: 10 },
+    };
+  
+    // Add table to the PDF document using jspdf-autotable
+    const tableHeader = [data[0]]; // Header row
+    const tableBody = data.slice(1); // Data rows
+  
+    // Calculate the centered position for the header
+    const textWidth = doc.getTextWidth(header);
+    const pageWidth = doc.internal.pageSize.width;
+    const headerPosition = (pageWidth - textWidth) / 2;
+  
+    (doc as any).autoTable({
+      head: tableHeader,
+      body: tableBody,
+      startY: 50, // Start position from top (adjust as needed)
+      theme: 'grid',
+      ...tableConfig,
+    });
+  
+    // Add header, student info, and footer
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+  
+    // Center the header text
+    doc.text(header, headerPosition, 10, { align: 'left' });
+  
+    // Add student info at the top left corner
+    doc.text(studentName, 10, 20);
+    doc.text(studentId, 10, 30);
+  
+    doc.setFontSize(10);
+    doc.text(footer, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, {
+      align: 'center',
+    });
+  
+    // Save the PDF
+    doc.save('semester2_results.pdf');
+  }
+  }
+

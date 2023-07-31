@@ -1,0 +1,64 @@
+<!-- navBar -->
+<div id="nav">
+    <h1 class="text-center">LUMINA ACADEMY
+        <img width="60px" src="https://th.bing.com/th/id/R.74b2fdd2107b648fbfe8ca3a00e67f32?rik=h8b78dzxpZfKXA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f04%2fLos_Angeles_Dodgers_logo_blue.png&ehk=bPA1QxmlSvoMeZ4oj6hq7qdQ%2bDBSasQP%2b4Bjixr9qWM%3d&risl=&pid=ImgRaw&r=0" alt="">  
+    </h1>
+  </div>
+
+  <!-- Main content -->
+  <div class="container">
+    <h2>Enter Marks</h2>
+    <div>
+      <form [formGroup]="markForm" (ngSubmit)="saveMark()" class="mt-5 p-5 border rounded shadow">
+        <div class="form-floating">
+          <select name="semester" formControlName="semester" class="form-select" id="semester" aria-label="semester">
+            <option value="" disabled selected>Select Semester</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <label for="semester">Semester</label>
+        </div>
+        <div class="form-floating">
+          <select name="type" formControlName="type" class="form-select" id="type" aria-label="type">
+            <option value="" disabled selected>Select Type</option>
+            <option value="internal">Internal</option>
+            <option value="assignment">Assignment</option>
+          </select>
+          <label for="type">Type</label>
+        </div>
+        <div class="form-floating">
+          <select name="number" formControlName="number" class="form-select" id="number" aria-label="number">
+            <option value="" disabled selected>Select Number</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <label for="number">Number</label>
+        </div>
+        <div class="form-floating">
+          <select name="subject" formControlName="subject" class="form-select" id="subject" aria-label="subject">
+            <option value="" disabled selected>Select Subject</option>
+            <option value="maths">Maths</option>
+            <option value="science">Science</option>
+            <option value="english">English</option>
+          </select>
+          <label for="subject">Subject</label>
+        </div>
+        <div class="form-floating">
+          <input name="mark" formControlName="mark" type="text" class="form-control" id="floatingInput"
+            placeholder="Enter Mark">
+          <label for="floatingInput">Enter Mark</label>
+          <div *ngIf="this.markForm.get('mark')?.errors && this.markForm.get('mark')?.touched" class="text-danger">Please enter a mark between 0-10</div>
+        </div>
+        <div class="text-danger text-center">{{saveError}}</div>
+        <button id="login" class="mt-4 mb-4 form-control" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- footer -->
+    <footer class="text-center text-lg-start text-white">
+      <!-- Grid container -->
+      <div class="p-3">
+        © 2023 Kuriak_k | LUMINA ACADEMY
+      </div>
+    </footer>

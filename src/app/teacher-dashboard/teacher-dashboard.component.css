@@ -1,0 +1,241 @@
+/* Navbar Styling */
+#nav {
+  height: 70px;
+  background-color: darkblue;
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#nav img {
+  width: 40px;
+  height: 40px;
+margin-left: 10px;}
+
+#menu {
+  background-color: darkblue;
+  color: aliceblue;
+  border: none;
+  font-size: 24px;
+}
+
+#menu:hover {
+  background-color: aliceblue;
+  color: darkblue;
+}
+
+/* Offcanvas Styling */
+.offcanvas-header {
+  background-color: darkblue;
+  color: aliceblue;
+}
+
+#side {
+  background-color: rgb(41, 41, 190);
+  color: aliceblue;
+  height: 50px;
+}
+
+#side:hover {
+  background-color: aliceblue;
+  color: darkblue;
+  border: 2px solid darkblue;
+}
+
+/* Main Content Styling */
+.container {
+  margin-top: 20px;
+}
+
+.col-4 {
+  margin: 20px 0;
+}
+
+.border {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: border-color 0.3s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.border:hover {
+  border-color: #000;
+}
+
+/* Table Styling */
+.custom-table {
+  background-color: #fff;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.custom-table thead th {
+  background-color: darkblue;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 18px;
+  padding: 12px;
+}
+
+.custom-table td:last-child {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.custom-table td:last-child i {
+  margin-right: 10px;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #380ed1;
+}
+
+/* Additional Styling for Modal */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  background-color: darkblue;
+  color: aliceblue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-footer {
+  background-color: #f8f8f8;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.modal-footer .btn-primary {
+  background-color: darkblue;
+  color: aliceblue;
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: aliceblue;
+  color: darkblue;
+}
+
+/* Styling for the Number of Students and Lessons cards */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the Search Input Box */
+.input-group input[type="text"] {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.input-group-append .btn {
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+/* Styling for the Add New Student and Log Out buttons */
+#staticBackdrop .modal-footer .btn-secondary {
+  background-color: #f8f8f8;
+  color: darkblue;
+  border: 1px solid darkblue;
+}
+
+#staticBackdrop .modal-footer .btn-secondary:hover {
+  background-color: darkblue;
+  color: aliceblue;
+}
+
+#staticBackdrop .modal-footer .btn-primary {
+  background-color: darkblue;
+  color: aliceblue;
+  border: none;
+}
+
+#staticBackdrop .modal-footer .btn-primary:hover {
+  background-color: aliceblue;
+  color: darkblue;
+}
+
+/* Footer Styling */
+footer {
+  margin-top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+  background-color: darkblue;
+  color: #fff;
+  text-align: center;
+}
+
+footer div {
+  color: white;
+  text-align: center;
+}
+
+/* Styling for the confirmation dialog */
+.confirmation-dialog {
+  max-width: 400px;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-dialog p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.confirmation-dialog .modal-footer {
+  border-top: none;
+  padding-top: 0;
+}
+
+.confirmation-dialog .modal-footer button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.confirmation-dialog .modal-footer button:first-child {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.confirmation-dialog .modal-footer button:first-child:hover {
+  background-color: #d32f2f;
+}
+
+.confirmation-dialog .modal-footer button:last-child {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+}
+
+.confirmation-dialog .modal-footer button:last-child:hover {
+  background-color: #45a049;
+}

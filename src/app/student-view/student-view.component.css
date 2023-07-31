@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* navBar Styling */
+#nav {
+  height: 80px;
+  background-color: darkblue;
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#nav img {
+  width: 60px;
+  margin-right: 10px;
+}
+  
+* Main-Content Styling */
+.container {
+  margin-top: 20px;
+}
+
+.table-bordered {
+  border: 1px solid #ccc;
+}
+
+.table-symmetric {
+  background-color: #f7f7f7;
+}
+
+/* Style the table header */
+.table-symmetric thead th {
+  background-color: rgba(0, 0, 139, 0.801);
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Style the table cells */
+.table-symmetric tbody td,
+.table-symmetric tbody th {
+  padding: 8px;
+  text-align: center;
+}
+
+/* Style the alternating rows */
+.table-symmetric tbody tr:nth-child(even) {
+  background-color: #eaeaea;
+}
+
+/* Style the rounded corners of the table */
+.table-rounded {
+  border-radius: 10px;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: darkblue;
+  border-color: darkblue;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background-color: #1e448e;
+  border-color: #1e448e;
+}
+
+/* Footer Styling */
+footer {
+  margin-top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+  background-color: darkblue;
+  color: #fff;
+  text-align: center;
+}
+
+
+footer div {
+  color: white;
+  text-align: center;
+}

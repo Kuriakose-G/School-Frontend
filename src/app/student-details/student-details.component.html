@@ -1,0 +1,62 @@
+  <!-- navBar -->
+  <div id="nav">
+    <img src="https://th.bing.com/th/id/R.74b2fdd2107b648fbfe8ca3a00e67f32?rik=h8b78dzxpZfKXA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f04%2fLos_Angeles_Dodgers_logo_blue.png&ehk=bPA1QxmlSvoMeZ4oj6hq7qdQ%2bDBSasQP%2b4Bjixr9qWM%3d&risl=&pid=ImgRaw&r=0" alt="Lumina Academy Logo">
+    <h1 class="text-center" style="font-size: 28px;">LUMINA ACADEMY</h1>
+  </div>
+
+    <!-- Main content -->
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h2 class="text-center mt-5">Student Details</h2>
+            <div>
+                <form [formGroup]="detailsForm" (ngSubmit)="saveDetails()" class="mt-5 p-5 border rounded shadow">
+                    <div class="form-floating mb-3">
+                        <input name="email" formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="email">
+                        <label for="floatingInput">Email</label>
+                        <div *ngIf="this.detailsForm.get('email')?.errors && this.detailsForm.get('email')?.touched" class="text-danger">Enter correct Email</div>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input name="dob" formControlName="dob" type="text" class="form-control" id="floatingInput" placeholder="dob">
+                        <label for="floatingInput">DOB - DD/MM/YYYY</label>
+                        <div *ngIf="this.detailsForm.get('dob')?.errors && this.detailsForm.get('dob')?.touched" class="text-danger">Check format</div>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <select name="gender" formControlName="gender" class="form-select" id="gender" aria-label="Gender">
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <label for="gender">Gender</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input name="contact" formControlName="contact" type="text" class="form-control" id="floatingInput" placeholder="contact">
+                        <label for="floatingInput">Contact Number</label>
+                        <div *ngIf="this.detailsForm.get('contact')?.errors && this.detailsForm.get('contact')?.touched" class="text-danger">Invalid number</div>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input name="gname" formControlName="gname" type="text" class="form-control" id="floatingInput" placeholder="gname">
+                        <label for="floatingInput">Guardian Name</label>
+                        <div *ngIf="this.detailsForm.get('gname')?.errors && this.detailsForm.get('gname')?.touched" class="text-danger">Check spelling</div>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input name="gcontact" formControlName="gcontact" type="text" class="form-control" id="floatingInput" placeholder="gcontact">
+                        <label for="floatingInput">Guardian Contact Number</label>
+                        <div *ngIf="this.detailsForm.get('gcontact')?.errors && this.detailsForm.get('gcontact')?.touched" class="text-danger">Invalid number</div>
+                      </div>
+                      <button id="login" class="mt-4 mb-4 form-control" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+  <!-- footer -->
+  <footer class="text-center text-lg-start text-white">
+    <!-- Grid container -->
+    <div class="p-3">
+      © 2023 Kuriak_k | LUMINA ACADEMY
+    </div>
+  </footer>

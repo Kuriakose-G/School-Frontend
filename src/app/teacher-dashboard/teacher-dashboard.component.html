@@ -1,0 +1,206 @@
+<!-- Updated Navbar -->
+<div id="nav">
+  <button id="menu" class="btn mt-3 ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <h1 class="text-center" style="margin-left: 650px;">LUMINA ACADEMY</h1>
+  <img width="60px" src="https://th.bing.com/th/id/R.74b2fdd2107b648fbfe8ca3a00e67f32?rik=h8b78dzxpZfKXA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f04%2fLos_Angeles_Dodgers_logo_blue.png&ehk=bPA1QxmlSvoMeZ4oj6hq7qdQ%2bDBSasQP%2b4Bjixr9qWM%3d&risl=&pid=ImgRaw&r=0" alt="">
+</div>
+<!-- Updated Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 300px;">
+  <div class="offcanvas-header" style="background-color: darkblue; color: aliceblue;">
+    <h5 class="offcanvas-title fs-4" id="offcanvasExampleLabel">Welcome, {{user}}</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" style="font-size: 20px;"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Academic Time Table Content -->
+    <h4 class="text-center mb-4">Academic Time Table</h4>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>Time</th>
+          <td>Math</td>
+          <td>Science</td>
+          <td>English</td>
+          <!-- Add more subjects here -->
+        </tr>
+        <tr>
+          <th>Start of Semester 1</th>
+          <td>2023-09-01</td>
+          <td>2023-09-01</td>
+          <td>2023-09-01</td>
+          <!-- Add more start dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Internal 1 Exam (Semester 1)</th>
+          <td>2023-10-15</td>
+          <td>2023-10-18</td>
+          <td>2023-10-20</td>
+          <!-- Add more internal exam dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Assignment 1 (Semester 1)</th>
+          <td>2023-10-30</td>
+          <td>2023-11-02</td>
+          <td>2023-11-05</td>
+          <!-- Add more assignment dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Internal 2 Exam (Semester 1)</th>
+          <td>2023-12-15</td>
+          <td>2023-12-18</td>
+          <td>2023-12-20</td>
+          <!-- Add more internal exam dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Assignment 2 (Semester 1)</th>
+          <td>2023-12-30</td>
+          <td>2024-01-02</td>
+          <td>2024-01-05</td>
+          <!-- Add more assignment dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Start of Semester 2</th>
+          <td>2024-01-15</td>
+          <td>2024-01-15</td>
+          <td>2024-01-15</td>
+          <!-- Add more start dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Internal 1 Exam (Semester 2)</th>
+          <td>2024-02-15</td>
+          <td>2024-02-18</td>
+          <td>2024-02-20</td>
+          <!-- Add more internal exam dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Assignment 1 (Semester 2)</th>
+          <td>2024-02-28</td>
+          <td>2024-03-02</td>
+          <td>2024-03-05</td>
+          <!-- Add more assignment dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Internal 2 Exam (Semester 2)</th>
+          <td>2024-04-15</td>
+          <td>2024-04-18</td>
+          <td>2024-04-20</td>
+          <!-- Add more internal exam dates for other subjects -->
+        </tr>
+        <tr>
+          <th>Assignment 2 (Semester 2)</th>
+          <td>2024-04-28</td>
+          <td>2024-05-02</td>
+          <td>2024-05-05</td>
+          <!-- Add more assignment dates for other subjects -->
+        </tr>
+      </tbody>
+    </table>
+    <!-- Add your content here -->
+    <div class="d-grid gap-2 mt-4">
+      <button id="side" class="btn form-control" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i> Add New Student</button>
+    </div>
+    <div class="d-grid gap-2 mt-2">
+      <button (click)="logout()" id="side" class="btn form-control" type="button">Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="staticBackdropLabel">Add New Student</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addStudent" (ngSubmit)="addStu()">
+        <div class="form-floating mb-3">
+          <input name="studentName" formControlName="studentName" type="text" class="form-control" id="floatingInput" placeholder="Student Name">
+          <label for="floatingInput">Student Name</label>
+          <div *ngIf="this.addStudent.get('studentName')?.errors && this.addStudent.get('studentName')?.touched" class="text-danger">Invalid Data</div>
+        </div>
+        <div class="form-floating">
+          <input name="studentid" formControlName="studentid" type="text" class="form-control" id="floatingPassword" placeholder="Student Id">
+          <label for="floatingPassword">Student Id</label>
+          <div *ngIf="this.addStudent.get('studentid')?.errors && this.addStudent.get('studentid')?.touched" class="text-danger">Invalid Data</div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="reset()">Reset</button>
+        <button type="button" class="btn btn-primary" (click)="addStu()">Add</button>
+      </div>
+      <div class="mt-2 text-success text-center fw-bolder"> {{addSuccess}}</div>
+      <div class="mt-2 text-danger text-center fw-bolder"> {{addError}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <h2 class="text-center mt-5 fs-1" style="color: darkblue;">CLASS: {{classM}}</h2>
+  </div>
+  <div class="row" style="display: flex; justify-content: space-between; font-size: 20px;">
+    <div class="col-4">
+      <div class="mt-5 border p-3 rounded text-light" style="width: 450px; height: 120px; background-color:  #3a5896;">
+        <p class="mb-0">Number of Students</p>
+        <h2 class="mb-0">{{studentNo}}</h2>
+      </div>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="mt-5 border p-3 rounded text-light" style="width: 450px; height: 120px; background-color: #6fa8c4;">
+        <p class="mb-0">Number of Lessons</p>
+        <h2 class="mb-0">10</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Updated Table -->
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <!-- Search Input Box -->
+      <div class="input-group mt-3">
+        <input type="text" placeholder="Search" class="form-control" [(ngModel)]="searchTerm">
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table mt-5 table-bordered table-striped custom-table" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <thead class="bg-dark text-white">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Student ID</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of allstudents | filter:searchTerm:'studentName'; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ student.studentName }}</td>
+            <td>{{ student.studentId }}</td>
+            <td><i class="fa-solid fa-eye me-2" style="cursor: pointer;" [routerLink]="'/student-view/' + student.id"></i> <i class="fa-regular fa-square-minus" (click)="confirmRemoveStudent(student.id)" style="cursor: pointer;"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<footer class="text-center text-lg-start text-white">
+  <!-- Grid container -->
+  <div class="p-3">
+    © 2023 Kuriak_k | LUMINA ACADEMY
+  </div>
+</footer>
+
